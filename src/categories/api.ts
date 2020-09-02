@@ -15,7 +15,7 @@ export class CategoriesApi {
   /**
    * Retrieve a list of all categories and their ancestry. The returned list is not paginated.
    */
-  async list(
+  public async list(
     params: ListCategoriesRequest,
   ): Promise<CategoryResource[]> {
     const urlParams = [];
@@ -30,7 +30,7 @@ export class CategoriesApi {
    * Retrieve a specific category by providing its unique identifier.
    * @param categoryId The unique identifier for the category. e.g. restaurants-and-cafes
    */
-  async retrieve(
+  public async retrieve(
     categoryId: string
   ): Promise<CategoryResource> {
     return this.api.get<CategoryResource>(`${ENDPOINT}/${categoryId}`);

@@ -16,7 +16,7 @@ export class UtilApi {
    * On authentication success an HTTP 200 status is returned.
    * On failure an HTTP 401 error response is returned.
    */
-  async ping(): Promise<Pong> {
+  public async ping(): Promise<Pong> {
     return this.api.get<Pong>(`${ENDPOINT}/ping`);
   }
 }

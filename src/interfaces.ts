@@ -1,3 +1,33 @@
+export interface MoneyObject {
+  /** The ISO 4217 currency code. */
+  currencyCode: string;
+  /**
+   * The amount of money, formatted as a string in the relevant currency.
+   * For example, for an Australian dollar value of $10.56, this field will be "10.56".
+   * The currency symbol is not included in the string.
+   */
+  value: string;
+  /**
+   * The amount of money in the smallest denomination for the currency, as a 64-bit integer.
+   * For example, for an Australian dollar value of $10.56, this field will be 1056.
+   */
+  valueInBaseUnits: bigint;
+}
+
+export interface Relationship {
+  /** The type of this resource */
+  type: string;
+  /** The unique identifier of the resource within its type. */
+  id: string;
+}
+
+export interface PaginationLinks {
+  /** The link to the previous page in the results. If this value is null there is no previous page. */
+  prev: string | null;
+  /** The link to the next page in the results. If this value is null there is no next page. */
+  next: string | null;
+}
+
 /**  Generic error response that returns one or more errors. */
  export interface ErrorResponse {
   /** The list of errors returned in this response. */
