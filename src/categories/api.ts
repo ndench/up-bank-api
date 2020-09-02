@@ -1,5 +1,5 @@
-import { AxiosInstance } from 'axios';
 import { CategoryResource, ListCategoriesRequest } from './interfaces';
+import { UpClient } from "../helper/client";
 
 const ENDPOINT = 'categories';
 
@@ -10,8 +10,7 @@ const ENDPOINT = 'categories';
  * directly assigned to transactions.
  */
 export class CategoriesApi {
-  constructor(private api: AxiosInstance) {
-  }
+  constructor(private api: UpClient) {}
 
   /**
    * Retrieve a list of all categories and their ancestry. The returned list is not paginated.
@@ -24,8 +23,7 @@ export class CategoriesApi {
       urlParams.push(`filter[parent]=${params.parent}`);
     }
 
-    const res = await this.api.get<CategoryResource[]>(`${ENDPOINT}?${urlParams.join('&')}`);
-    return res.data;
+    return this.api.get<CategoryResource[]>(`${ENDPOINT}?${urlParams.join('&')}`);
   }
 
   /**
@@ -35,7 +33,6 @@ export class CategoriesApi {
   async retrieve(
     categoryId: string
   ): Promise<CategoryResource> {
-    const res = await this.api.get<CategoryResource>(`${ENDPOINT}/${categoryId}`);
-    return res.data;
+    return this.api.get<CategoryResource>(`${ENDPOINT}/${categoryId}`);
   }
 }

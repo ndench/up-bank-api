@@ -1,5 +1,5 @@
-import { AxiosInstance } from 'axios';
 import { Pong } from './interfaces';
+import { UpClient } from "../helper/client";
 
 const ENDPOINT = 'util';
 
@@ -8,7 +8,7 @@ const ENDPOINT = 'util';
  * Currently there is only one endpoint in this group: ping!
  */
 export class UtilApi {
-  constructor(private api: AxiosInstance) {}
+  constructor(private api: UpClient) {}
 
   /**
    * Make a basic ping request to the API.
@@ -17,7 +17,6 @@ export class UtilApi {
    * On failure an HTTP 401 error response is returned.
    */
   async ping(): Promise<Pong> {
-    const res = await this.api.get<Pong>(`${ENDPOINT}/ping`);
-    return res.data;
+    return this.api.get<Pong>(`${ENDPOINT}/ping`);
   }
 }

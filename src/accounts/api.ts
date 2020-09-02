@@ -1,6 +1,5 @@
-import { AxiosInstance } from 'axios';
 import { AccountResource, ListAccountResponse, ListAccountsRequest } from './interfaces';
-import { CategoryResource } from "../categories/interfaces";
+import { UpClient } from "../helper/client";
 
 const ENDPOINT = 'accounts';
 
@@ -11,8 +10,7 @@ const ENDPOINT = 'accounts';
  * TRANSACTIONAL - used for everyday spending.
  */
 export class AccountsApi {
-  constructor(private api: AxiosInstance) {
-  }
+  constructor(private api: UpClient) {}
 
   /**
    * Retrieve a paginated list of all accounts for the currently authenticated user.
@@ -26,8 +24,7 @@ export class AccountsApi {
       urlParams.push(`list?page[size]=${params.pageSize}`);
     }
 
-    const res = await this.api.get<ListAccountResponse>(`${ENDPOINT}/list?${urlParams.join('&')}`);
-    return res.data;
+    return this.api.get<ListAccountResponse>(`${ENDPOINT}/list?${urlParams.join('&')}`);
   }
 
   /**
@@ -37,7 +34,6 @@ export class AccountsApi {
   async retrieve(
     accountId: string
   ): Promise<AccountResource> {
-    const res = await this.api.get<AccountResource>(`${ENDPOINT}/${accountId}`);
-    return res.data;
+    return this.api.get<AccountResource>(`${ENDPOINT}/${accountId}`);
   }
 }
