@@ -1,0 +1,32 @@
+{
+  "name": "up-bank-api",
+  "version": "0.1.0",
+  "description": "The Up Bank API TypeScript wrapper",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest --passWithNoTests"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ndench/up-bank-api.git"
+  },
+  "keywords": [
+    "up",
+    "banking",
+    "upbank"
+  ],
+  "author": "Nathan Dench <ndenc2@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ndench/up-bank-api/issues"
+  },
+  "homepage": "https://github.com/ndench/up-bank-api#readme",
+  "dependencies": {
+    "axios": "^0.20.0"
+  },
+  "devDependencies": {
+    "jest": "^26.4.2",
+    "ts-jest": "^26.3.0",
+    "typescript": "^4.0.2"
+  }
+}
