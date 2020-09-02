@@ -1,0 +1,7 @@
+node_modules/**/*
+
+# macOS
+.DS_Store
+
+# phpstorm
+.idea/workspace.xml
