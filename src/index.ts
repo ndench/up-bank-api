@@ -22,4 +22,6 @@ export class UpApi {
 export * from './interfaces';
 export * from './util/interfaces';
 export * from './accounts/interfaces';
+export * from './categories/interfaces';
+export * from './transactions/interfaces';
 

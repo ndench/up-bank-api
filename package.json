@@ -2,14 +2,19 @@
   "name": "up-bank-api",
   "version": "0.1.0",
   "description": "The Up Bank API TypeScript wrapper",
-  "main": "index.js",
+  "main": "dist/bundle.js",
+  "module": "dist/bundle.esm.js",
+  "browser": "dist/bundle.umd.js",
+  "files": [
+    "dist"
+  ],
+  "types": "dist/index.d.ts",
   "scripts": {
+    "build": "./scripts/build.sh",
+    "dev": "./scripts/dev.sh",
     "test": "jest --passWithNoTests"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/ndench/up-bank-api.git"
-  },
+  "repository": "git://github.com/ndench/up-bank-api.git",
   "keywords": [
     "up",
     "banking",
@@ -21,11 +26,17 @@
     "url": "https://github.com/ndench/up-bank-api/issues"
   },
   "homepage": "https://github.com/ndench/up-bank-api#readme",
+  "publishConfig": {
+    "access": "public"
+  },
   "dependencies": {
     "axios": "^0.20.0"
   },
   "devDependencies": {
+    "dts-bundle": "^0.7.3",
     "jest": "^26.4.2",
+    "rollup": "^2.26.9",
+    "rollup-plugin-typescript2": "^0.27.2",
     "ts-jest": "^26.3.0",
     "typescript": "^4.0.2"
   }

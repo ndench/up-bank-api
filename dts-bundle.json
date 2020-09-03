@@ -1,0 +1,5 @@
+{
+  "name": "up-bank-api",
+  "main": "temp-dec/index.d.ts",
+  "out": "../dist/index.d.ts"
+}
