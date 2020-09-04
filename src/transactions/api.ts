@@ -32,8 +32,8 @@ export class TransactionsApi {
    */
   public async retrieve(
     transactionId: string
-  ): Promise<TransactionResource> {
-    return this.api.get<TransactionResource>(`${ENDPOINT}/${transactionId}`);
+  ): Promise<{data: TransactionResource}> {
+    return this.api.get<{data: TransactionResource}>(`${ENDPOINT}/${transactionId}`);
   }
 
   /**

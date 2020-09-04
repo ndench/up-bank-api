@@ -33,7 +33,7 @@ export class AccountsApi {
    */
   public async retrieve(
     accountId: string
-  ): Promise<AccountResource> {
-    return this.api.get<AccountResource>(`${ENDPOINT}/${accountId}`);
+  ): Promise<{data: AccountResource}> {
+    return this.api.get<{data: AccountResource}>(`${ENDPOINT}/${accountId}`);
   }
 }

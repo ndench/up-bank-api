@@ -17,13 +17,13 @@ export class CategoriesApi {
    */
   public async list(
     params: ListCategoriesRequest,
-  ): Promise<CategoryResource[]> {
+  ): Promise<{data: CategoryResource[]}> {
     const urlParams = [];
     if (params.parent) {
       urlParams.push(`filter[parent]=${params.parent}`);
     }
 
-    return this.api.get<CategoryResource[]>(`${ENDPOINT}?${urlParams.join('&')}`);
+    return this.api.get<{data: CategoryResource[]}>(`${ENDPOINT}?${urlParams.join('&')}`);
   }
 
   /**
@@ -32,7 +32,7 @@ export class CategoriesApi {
    */
   public async retrieve(
     categoryId: string
-  ): Promise<CategoryResource> {
-    return this.api.get<CategoryResource>(`${ENDPOINT}/${categoryId}`);
+  ): Promise<{data: CategoryResource}> {
+    return this.api.get<{data: CategoryResource}>(`${ENDPOINT}/${categoryId}`);
   }
 }
