@@ -26,6 +26,8 @@ jobs:
           key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
             ${{ runner.os }}-node-
+      # Authenticate
+      - run: npm config set //registry.npmjs.org/:_authToken=${NODE_AUTH_TOKEN}
       # Install
       - run: npm install
       # Runs all tests
