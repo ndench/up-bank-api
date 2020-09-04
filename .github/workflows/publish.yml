@@ -1,0 +1,36 @@
+name: Publish
+# This workflow is triggered on pushes to the repository on production branch
+on:
+  push:
+    branches:
+      - 'production' # Only publish in production branch
+
+jobs:
+  publish:
+    name: Run Test, Build and Publish
+    # This job runs on Linux
+    runs-on: ubuntu-latest
+    env:
+      NPM_TOKEN: ${{ secrets.NPM_PUBLISH_TOKEN }}
+    steps:
+      # Checkout the repo
+      - uses: actions/checkout@v2
+      # Set the node version
+      - uses: actions/setup-node@v1
+        with:
+          node-version: '12.x'
+      # Restore the cache if there are any, so we can run the install faster
+      - uses: actions/cache@v1
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+      # Install
+      - run: npm install
+      # Runs all tests
+      - run: npm run test
+      # Run the build as well, to make sure it does build
+      - run: npm run build
+      # Publish
+      - run: npm publish
