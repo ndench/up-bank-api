@@ -17,7 +17,7 @@ export class AccountsApi {
    * The returned list is paginated and can be scrolled by following the prev and next links where present.
    */
   public async list(
-    params: ListAccountsRequest,
+    params: ListAccountsRequest = {},
   ): Promise<ListAccountResponse> {
     const urlParams = [];
     if (params.pageSize) {

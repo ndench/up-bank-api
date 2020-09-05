@@ -19,7 +19,7 @@ export class TransactionsApi {
    * newest first to oldest last.
    */
   public async list(
-    params: ListTransactionRequest,
+    params: ListTransactionRequest = {},
   ): Promise<ListTransactionsResponse> {
     const urlParams = this.createUrlParams(params);
 
@@ -45,7 +45,7 @@ export class TransactionsApi {
    */
   public async listByAccount(
     accountId: string,
-    params: ListTransactionRequest,
+    params: ListTransactionRequest = {},
   ): Promise<ListTransactionsResponse> {
     const urlParams = this.createUrlParams(params);
 

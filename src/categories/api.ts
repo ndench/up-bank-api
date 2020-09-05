@@ -16,7 +16,7 @@ export class CategoriesApi {
    * Retrieve a list of all categories and their ancestry. The returned list is not paginated.
    */
   public async list(
-    params: ListCategoriesRequest,
+    params: ListCategoriesRequest = {},
   ): Promise<{data: CategoryResource[]}> {
     const urlParams = [];
     if (params.parent) {
