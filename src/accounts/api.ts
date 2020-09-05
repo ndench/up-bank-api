@@ -21,7 +21,7 @@ export class AccountsApi {
   ): Promise<ListAccountResponse> {
     const urlParams = [];
     if (params.pageSize) {
-      urlParams.push(`list?page[size]=${params.pageSize}`);
+      urlParams.push(`${ENDPOINT}?page[size]=${params.pageSize}`);
     }
 
     return this.api.get<ListAccountResponse>(`${ENDPOINT}/list?${urlParams.join('&')}`);
