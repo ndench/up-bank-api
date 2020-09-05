@@ -1,9 +1,9 @@
 # up-bank-api
 
-[![npm version](https://badge.fury.io/js/up-bank-api.svg)](https://badge.fury.io/js/up-bank-api)
-![npm downloads](https://img.shields.io/npm/dt/up-bank-api)
-![download size](https://img.shields.io/bundlephobia/min/up-bank-api)
-![Publish](https://github.com/ndench/up-bank-api/workflows/Publish/badge.svg)
+[![npm version](https://badge.fury.io/js/up-bank-api.svg)](https://www.npmjs.com/package/up-bank-api)
+[![npm downloads](https://img.shields.io/npm/dt/up-bank-api)](https://www.npmjs.com/package/up-bank-api)
+[![download size](https://img.shields.io/bundlephobia/min/up-bank-api)](https://www.npmjs.com/package/up-bank-api)
+[![Publish](https://github.com/ndench/up-bank-api/workflows/Publish/badge.svg)](https://github.com/ndench/up-bank-api/actions?query=workflow%3APublish)
 
 A TypeScript wrapper around the [UpBank API](https://developer.up.com.au/).
 
@@ -39,18 +39,11 @@ const validateApiKey = async () => {
   return true;
 }
 
-const listAccounts = async () => {
-  const res = await up.accounts.list({ pageSize: 30 });
-
-  // Do something with the result
-  console.log(res);
-};
-
 const validApiKey = await validateApiKey();
 
 if (validApiKey) {
   try {
-    const accounts = await listAccounts();
+    const accounts = await up.accounts.list({ pageSize: 30 });
   } catch (e) {
     if (isUpApiError(e)) {
       // Handle error returned from Up API
@@ -78,3 +71,7 @@ The following modules of the Up API are not yet supported (feel free to send a P
 
 * [Tags](https://developer.up.com.au/#tags)
 * [Webhooks](https://developer.up.com.au/#webhooks)
+
+## Special thanks
+
+Special thanks to [LifeBac/intakeq-api](https://github.com/LifeBac/intakeq-api) for API architecture inspiration.
