@@ -2,7 +2,7 @@ import { MoneyObject, PaginationLinks, Relationship } from "../interfaces";
 
 export interface ListTransactionRequest {
   /** The number of records to return in each page. e.g. ?page[size]=30 */
-  pageSize?: bigint;
+  pageSize?: number;
   /**
    * The transaction status for which to return records. This can be used to filter HELD transactions
    * from those that are SETTLED.

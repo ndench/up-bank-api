@@ -2,7 +2,7 @@ import { MoneyObject, PaginationLinks } from "../interfaces";
 
 export interface ListAccountsRequest {
   /** The number of records to return in each page. e.g. ?page[size]=30 */
-  pageSize?: bigint;
+  pageSize?: number;
 }
 
 export enum AccountTypeEnum {

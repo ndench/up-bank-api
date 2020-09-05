@@ -11,7 +11,7 @@ export interface MoneyObject {
    * The amount of money in the smallest denomination for the currency, as a 64-bit integer.
    * For example, for an Australian dollar value of $10.56, this field will be 1056.
    */
-  valueInBaseUnits: bigint;
+  valueInBaseUnits: number;
 }
 
 export interface Relationship {
