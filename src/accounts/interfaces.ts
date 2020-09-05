@@ -20,11 +20,11 @@ export interface AccountResource {
     displayName: string;
     /** The bank account type of this account. */
     accountType: AccountTypeEnum;
+    /** The available balance of the account, taking into account any amounts that are currently on hold. */
+    balance: MoneyObject;
+    /** The date-time at which this account was first opened. */
+    createdAt: string;
   };
-  /** The available balance of the account, taking into account any amounts that are currently on hold. */
-  balance: MoneyObject;
-  /** The date-time at which this account was first opened. */
-  createdAt: string;
   relationships: {
     links?: {
       /** The link to retrieve the related resource(s) in this relationship. */
