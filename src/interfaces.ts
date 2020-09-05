@@ -29,8 +29,10 @@ export interface PaginationLinks {
 }
 
 export interface UpApiError {
-  code: string;
-  response: ErrorResponse;
+  response: {
+    data: ErrorResponse;
+    status: number;
+  };
 }
 
 /**  Generic error response that returns one or more errors. */

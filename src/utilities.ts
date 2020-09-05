@@ -11,6 +11,11 @@ export function isUpApiError(e: any): e is UpApiError {
     return false;
   }
 
-  return axiosError.code !== undefined && axiosError.response !== undefined;
+  const response = axiosError.response;
+  if (response === undefined) {
+    return false;
+  }
+
+  return response.data !== undefined && response.status !== undefined;
 }
 
