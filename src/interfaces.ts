@@ -28,8 +28,13 @@ export interface PaginationLinks {
   next: string | null;
 }
 
+export interface UpApiError {
+  code: string;
+  response: ErrorResponse;
+}
+
 /**  Generic error response that returns one or more errors. */
- export interface ErrorResponse {
+export interface ErrorResponse {
   /** The list of errors returned in this response. */
   errors: ErrorObject[];
 }

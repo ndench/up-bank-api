@@ -19,6 +19,7 @@ export class UpApi {
   }
 }
 
+export * from './utilities';
 export * from './interfaces';
 export * from './util/interfaces';
 export * from './accounts/interfaces';
