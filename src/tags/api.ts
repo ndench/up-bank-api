@@ -33,12 +33,13 @@ export class TagsApi {
    * ignored.
    * @param transactionId The unique identifier for the transaction. e.g.
    * 0a3c4bdd-1de5-4b9b-bf9e-53fb0b5f2cd7
+   * @param tags The tags to add to the transaction.
    */
   public async addTagsToTransaction(
     transactionId: string,
-    data: TagInputResourceIdentifier[]
+    tags: TagInputResourceIdentifier[]
   ): Promise<void> {
-    return this.api.post(TagsApi.buildTransactionTagsPath(transactionId), data);
+    return this.api.post(TagsApi.buildTransactionTagsPath(transactionId), tags);
   }
 
   /**
@@ -46,12 +47,13 @@ export class TagsApi {
    * not associated are silently ignored.
    * @param transactionId The unique identifier for the transaction. e.g.
    * 0a3c4bdd-1de5-4b9b-bf9e-53fb0b5f2cd7
+   * @param tags The tags to remove from the transaction.
    */
   public async removeTagsFromTransaction(
     transactionId: string,
-    data: TagInputResourceIdentifier[]
+    tags: TagInputResourceIdentifier[]
   ): Promise<void> {
-    return this.api.delete(TagsApi.buildTransactionTagsPath(transactionId), data);
+    return this.api.delete(TagsApi.buildTransactionTagsPath(transactionId), tags);
   }
 
   /**
