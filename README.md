@@ -37,7 +37,7 @@ const validateApiKey = async () => {
   }
 
   return true;
-}
+};
 
 const validApiKey = await validateApiKey();
 
@@ -60,17 +60,17 @@ if (validApiKey) {
 
 The following modules of the Up API are fully supported:
 
-* [Accounts](https://developer.up.com.au/#accounts)
-* [Categories](https://developer.up.com.au/#categories)
-* [Transactions](https://developer.up.com.au/#transactions)
-* [Utility](https://developer.up.com.au/#utility_endpoints)
+- [Accounts](https://developer.up.com.au/#accounts)
+- [Categories](https://developer.up.com.au/#categories)
+- [Transactions](https://developer.up.com.au/#transactions)
+- [Utility](https://developer.up.com.au/#utility_endpoints)
+- [Tags](https://developer.up.com.au/#tags)
 
 ## Not supported yet
 
 The following modules of the Up API are not yet supported (feel free to send a PR!):
 
-* [Tags](https://developer.up.com.au/#tags)
-* [Webhooks](https://developer.up.com.au/#webhooks)
+- [Webhooks](https://developer.up.com.au/#webhooks)
 
 ## Special thanks
 
