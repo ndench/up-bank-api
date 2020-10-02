@@ -10,7 +10,7 @@ export class UpClient {
       headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json',
-        'Authorization': `Bearer ${apiKey}`
+        Authorization: `Bearer ${apiKey}`,
       },
     });
   }
@@ -18,5 +18,15 @@ export class UpClient {
   public async get<T>(url: string): Promise<T> {
     const res = await this.api.get<T>(url);
     return res.data;
+  }
+
+  public async post<T>(url: string, payload: T): Promise<void> {
+    await this.api.post<T>(url, { data: payload });
+    return;
+  }
+
+  public async delete<T>(url: string, payload: T): Promise<void> {
+    await this.api.delete<T>(url, { data: { data: payload } });
+    return;
   }
 }
