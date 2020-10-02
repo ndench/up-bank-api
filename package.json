@@ -35,7 +35,6 @@
   "devDependencies": {
     "dts-bundle": "^0.7.3",
     "jest": "^26.4.2",
-    "prettier": "^2.1.2",
     "rollup": "^2.26.9",
     "rollup-plugin-typescript2": "^0.27.2",
     "ts-jest": "^26.3.0",
