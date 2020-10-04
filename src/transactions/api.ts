@@ -1,5 +1,9 @@
-import { ListTransactionRequest, ListTransactionsResponse, TransactionResource } from './interfaces';
-import { UpClient } from "../helper/client";
+import {
+  ListTransactionRequest,
+  ListTransactionsResponse,
+  TransactionResource,
+} from './interfaces';
+import { UpClient } from '../helper/client';
 
 const ENDPOINT = 'transactions';
 
@@ -19,11 +23,13 @@ export class TransactionsApi {
    * newest first to oldest last.
    */
   public async list(
-    params: ListTransactionRequest = {},
+    params: ListTransactionRequest = {}
   ): Promise<ListTransactionsResponse> {
     const urlParams = this.createUrlParams(params);
 
-    return this.api.get<ListTransactionsResponse>(`${ENDPOINT}?${urlParams.join('&')}`);
+    return this.api.get<ListTransactionsResponse>(
+      `${ENDPOINT}?${urlParams.join('&')}`
+    );
   }
 
   /**
@@ -32,8 +38,10 @@ export class TransactionsApi {
    */
   public async retrieve(
     transactionId: string
-  ): Promise<{data: TransactionResource}> {
-    return this.api.get<{data: TransactionResource}>(`${ENDPOINT}/${transactionId}`);
+  ): Promise<{ data: TransactionResource }> {
+    return this.api.get<{ data: TransactionResource }>(
+      `${ENDPOINT}/${transactionId}`
+    );
   }
 
   /**
@@ -45,15 +53,16 @@ export class TransactionsApi {
    */
   public async listByAccount(
     accountId: string,
-    params: ListTransactionRequest = {},
+    params: ListTransactionRequest = {}
   ): Promise<ListTransactionsResponse> {
     const urlParams = this.createUrlParams(params);
 
-    return this.api.get<ListTransactionsResponse>(`/accounts/${accountId}/${ENDPOINT}?${urlParams.join('&')}`);
+    return this.api.get<ListTransactionsResponse>(
+      `/accounts/${accountId}/${ENDPOINT}?${urlParams.join('&')}`
+    );
   }
 
-  private createUrlParams(params: ListTransactionRequest): string[]
-  {
+  private createUrlParams(params: ListTransactionRequest): string[] {
     const urlParams = [];
     if (params.pageSize) {
       urlParams.push(`page[size]=${params.pageSize}`);

@@ -1,5 +1,5 @@
 import { CategoryResource, ListCategoriesRequest } from './interfaces';
-import { UpClient } from "../helper/client";
+import { UpClient } from '../helper/client';
 
 const ENDPOINT = 'categories';
 
@@ -16,14 +16,16 @@ export class CategoriesApi {
    * Retrieve a list of all categories and their ancestry. The returned list is not paginated.
    */
   public async list(
-    params: ListCategoriesRequest = {},
-  ): Promise<{data: CategoryResource[]}> {
+    params: ListCategoriesRequest = {}
+  ): Promise<{ data: CategoryResource[] }> {
     const urlParams = [];
     if (params.parent) {
       urlParams.push(`filter[parent]=${params.parent}`);
     }
 
-    return this.api.get<{data: CategoryResource[]}>(`${ENDPOINT}?${urlParams.join('&')}`);
+    return this.api.get<{ data: CategoryResource[] }>(
+      `${ENDPOINT}?${urlParams.join('&')}`
+    );
   }
 
   /**
@@ -32,7 +34,9 @@ export class CategoriesApi {
    */
   public async retrieve(
     categoryId: string
-  ): Promise<{data: CategoryResource}> {
-    return this.api.get<{data: CategoryResource}>(`${ENDPOINT}/${categoryId}`);
+  ): Promise<{ data: CategoryResource }> {
+    return this.api.get<{ data: CategoryResource }>(
+      `${ENDPOINT}/${categoryId}`
+    );
   }
 }

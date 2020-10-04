@@ -66,5 +66,5 @@ export interface ErrorObject {
     parameter?: string;
     /** If this error relates to an attribute in the request body, a rfc-6901 JSON pointer to the attribute. */
     pointer?: string;
-  }
+  };
 }

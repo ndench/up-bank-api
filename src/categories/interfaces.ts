@@ -1,4 +1,4 @@
-import { Relationship } from "../interfaces";
+import { Relationship } from '../interfaces';
 
 export interface ListCategoriesRequest {
   /**
