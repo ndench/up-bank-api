@@ -1,5 +1,5 @@
-import { ErrorResponse, UpApiError } from "./interfaces";
-import { AxiosError } from "axios";
+import { ErrorResponse, UpApiError } from './interfaces';
+import { AxiosError } from 'axios';
 
 export function isUpApiError(e: any): e is UpApiError {
   if (!(e instanceof Error)) {
@@ -18,4 +18,3 @@ export function isUpApiError(e: any): e is UpApiError {
 
   return response.data !== undefined && response.status !== undefined;
 }
-

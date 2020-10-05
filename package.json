@@ -12,6 +12,7 @@
   "scripts": {
     "build": "./scripts/build.sh",
     "dev": "./scripts/dev.sh",
+    "lint": "eslint \"src/**/*.{js,ts}\" --quiet --fix",
     "test": "jest --passWithNoTests"
   },
   "repository": "git://github.com/ndench/up-bank-api.git",
@@ -32,9 +33,27 @@
   "dependencies": {
     "axios": "^0.19.0"
   },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "src/**/*.{js,ts}": [
+      "eslint --fix"
+    ]
+  },
   "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^4.3.0",
+    "@typescript-eslint/parser": "^4.3.0",
     "dts-bundle": "^0.7.3",
+    "eslint": "^7.10.0",
+    "eslint-config-prettier": "^6.12.0",
+    "eslint-plugin-prettier": "^3.1.4",
+    "husky": "^4.3.0",
     "jest": "^26.4.2",
+    "lint-staged": "^10.4.0",
+    "prettier": "^2.1.2",
     "rollup": "^2.26.9",
     "rollup-plugin-typescript2": "^0.27.2",
     "ts-jest": "^26.3.0",

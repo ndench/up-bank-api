@@ -1,4 +1,4 @@
-import { MoneyObject, PaginationLinks, Relationship } from "../interfaces";
+import { MoneyObject, PaginationLinks, Relationship } from '../interfaces';
 
 export interface ListTransactionRequest {
   /** The number of records to return in each page. e.g. ?page[size]=30 */
@@ -114,7 +114,7 @@ export interface TransactionResource {
     settledAt: string;
     /** The date-time at which this transaction was first encountered. */
     createdAt: string;
-  },
+  };
   relationships: {
     account: {
       data: Relationship;

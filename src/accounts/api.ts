@@ -1,5 +1,9 @@
-import { AccountResource, ListAccountResponse, ListAccountsRequest } from './interfaces';
-import { UpClient } from "../helper/client";
+import {
+  AccountResource,
+  ListAccountResponse,
+  ListAccountsRequest,
+} from './interfaces';
+import { UpClient } from '../helper/client';
 
 const ENDPOINT = 'accounts';
 
@@ -17,23 +21,23 @@ export class AccountsApi {
    * The returned list is paginated and can be scrolled by following the prev and next links where present.
    */
   public async list(
-    params: ListAccountsRequest = {},
+    params: ListAccountsRequest = {}
   ): Promise<ListAccountResponse> {
     const urlParams = [];
     if (params.pageSize) {
       urlParams.push(`page[size]=${params.pageSize}`);
     }
 
-    return this.api.get<ListAccountResponse>(`${ENDPOINT}?${urlParams.join('&')}`);
+    return this.api.get<ListAccountResponse>(
+      `${ENDPOINT}?${urlParams.join('&')}`
+    );
   }
 
   /**
    * Retrieve a specific account by providing its unique identifier.
    * @param accountId The unique identifier for the account. e.g. e7a729f0-aaa7-4d6a-b231-f794c0155e1d
    */
-  public async retrieve(
-    accountId: string
-  ): Promise<{data: AccountResource}> {
-    return this.api.get<{data: AccountResource}>(`${ENDPOINT}/${accountId}`);
+  public async retrieve(accountId: string): Promise<{ data: AccountResource }> {
+    return this.api.get<{ data: AccountResource }>(`${ENDPOINT}/${accountId}`);
   }
 }
