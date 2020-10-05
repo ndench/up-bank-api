@@ -1,5 +1,5 @@
 import { Pong } from './interfaces';
-import { UpClient } from "../helper/client";
+import { UpClient } from '../helper/client';
 
 const ENDPOINT = 'util';
 

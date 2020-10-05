@@ -1,4 +1,8 @@
-import { ListTagsRequest, ListTagsResponse, TagInputResourceIdentifier } from './interfaces';
+import {
+  ListTagsRequest,
+  ListTagsResponse,
+  TagInputResourceIdentifier,
+} from './interfaces';
 import { UpClient } from '../helper/client';
 
 const LIST_ENDPOINT = 'tags';
@@ -18,13 +22,17 @@ export class TagsApi {
    * Retrieve a list of all tags currently in use. The returned list is not
    * paginated.
    */
-  public async list(params: ListTagsRequest = {}): Promise<{ data: ListTagsResponse[] }> {
+  public async list(
+    params: ListTagsRequest = {}
+  ): Promise<{ data: ListTagsResponse[] }> {
     const urlParams = [];
     if (params.pageSize) {
       urlParams.push(`page[size]=${params.pageSize}`);
     }
 
-    return this.api.get<{ data: ListTagsResponse[] }>(`${LIST_ENDPOINT}?${urlParams.join('&')}`);
+    return this.api.get<{ data: ListTagsResponse[] }>(
+      `${LIST_ENDPOINT}?${urlParams.join('&')}`
+    );
   }
 
   /**
@@ -53,7 +61,10 @@ export class TagsApi {
     transactionId: string,
     tags: TagInputResourceIdentifier[]
   ): Promise<void> {
-    return this.api.delete(TagsApi.buildTransactionTagsPath(transactionId), tags);
+    return this.api.delete(
+      TagsApi.buildTransactionTagsPath(transactionId),
+      tags
+    );
   }
 
   /**

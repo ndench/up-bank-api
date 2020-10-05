@@ -1,4 +1,4 @@
-import { MoneyObject, PaginationLinks } from "../interfaces";
+import { MoneyObject, PaginationLinks } from '../interfaces';
 
 export interface ListAccountsRequest {
   /** The number of records to return in each page. e.g. ?page[size]=30 */
