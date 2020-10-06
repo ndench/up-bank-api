@@ -4,6 +4,7 @@ import { CategoriesApi } from './categories/api';
 import { UpClient } from './helper/client';
 import { TransactionsApi } from './transactions/api';
 import { TagsApi } from './tags/api';
+import { WebhookApi } from './webhooks/api';
 
 export class UpApi {
   public util: UtilApi;
@@ -11,6 +12,7 @@ export class UpApi {
   public categories: CategoriesApi;
   public transactions: TransactionsApi;
   public tags: TagsApi;
+  public webhooks: WebhookApi;
 
   constructor(apiKey: string) {
     const api = new UpClient(apiKey);
@@ -19,6 +21,7 @@ export class UpApi {
     this.categories = new CategoriesApi(api);
     this.transactions = new TransactionsApi(api);
     this.tags = new TagsApi(api);
+    this.webhooks = new WebhookApi(api);
   }
 }
 
@@ -29,3 +32,4 @@ export * from './accounts/interfaces';
 export * from './categories/interfaces';
 export * from './tags/interfaces';
 export * from './transactions/interfaces';
+export * from './webhooks/interfaces';
