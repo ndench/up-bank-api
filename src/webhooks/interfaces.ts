@@ -127,18 +127,6 @@ export interface CreateWebhookResponse {
 }
 
 /**
- * Specifies the type of a webhook event. This can be used to determine what
- * action to take in response to the event, such as which relationships to
- * expect.
- */
-enum WebhookEventTypeEnum {
-  'TRANSACTION_CREATED',
-  'TRANSACTION_SETTLED',
-  'TRANSACTION_DELETED',
-  'PING',
-}
-
-/**
  * Provides the event data used in asynchronous webhook event callbacks to
  * subscribed endpoints. Webhooks events have defined `eventType`s and may
  * optionally relate to other resources within the Up API.
@@ -158,7 +146,11 @@ export interface WebhookEventResource {
      * The type of this event. This can be used to determine what action to
      * take in response to the event.
      */
-    eventType: WebhookEventTypeEnum;
+    eventType:
+      | 'TRANSACTION_CREATED'
+      | 'TRANSACTION_SETTLED'
+      | 'TRANSACTION_DELETED'
+      | 'PING';
     /**
      * The date-time at which this event was generated.
      */
@@ -225,23 +217,6 @@ export interface GetWebhookResponse {
 }
 
 /**
- * Specifies the nature of the success or failure of a webhook delivery
- * attempt to the subscribed webhook URL. The currently returned values are
- * described below:
- *
- * - **`DELIVERED`**: The event was delivered to the webhook URL
- *   successfully and a `200` response was received.
- * - **`UNDELIVERABLE`**: The webhook URL was not reachable, or timed out.
- * - **`BAD_RESPONSE_CODE`**: The event was delivered to the webhook URL
- *   but a non-`200` response was received.
- */
-enum WebhookDeliveryStatusEnum {
-  'DELIVERED',
-  'UNDELIVERABLE',
-  'BAD_RESPONSE_CODE',
-}
-
-/**
  * Provides historical webhook event delivery information for analysis and
  * debugging purposes.
  */
@@ -278,9 +253,17 @@ export interface WebhookDeliveryLogResource {
       body: string;
     } | null;
     /**
-     * The success or failure status of this delivery attempt.
+     * Specifies the nature of the success or failure of a webhook delivery
+     * attempt to the subscribed webhook URL. The currently returned values are
+     * described below:
+     *
+     * - **`DELIVERED`**: The event was delivered to the webhook URL
+     *   successfully and a `200` response was received.
+     * - **`UNDELIVERABLE`**: The webhook URL was not reachable, or timed out.
+     * - **`BAD_RESPONSE_CODE`**: The event was delivered to the webhook URL
+     *   but a non-`200` response was received.
      */
-    deliveryStatus: WebhookDeliveryStatusEnum;
+    deliveryStatus: 'DELIVERED' | 'UNDELIVERABLE' | 'BAD_RESPONSE_CODE';
     /**
      * The date-time at which this log entry was created.
      */
