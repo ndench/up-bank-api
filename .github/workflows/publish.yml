@@ -30,6 +30,8 @@ jobs:
       - run: npm config set //registry.npmjs.org/:_authToken=${NODE_AUTH_TOKEN}
       # Install
       - run: npm install
+      # Lint
+      - run: npm lint
       # Runs all tests
       - run: npm run test
       # Run the build as well, to make sure it does build

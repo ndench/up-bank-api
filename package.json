@@ -1,6 +1,6 @@
 {
   "name": "up-bank-api",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "The Up Bank API TypeScript wrapper",
   "main": "dist/bundle.js",
   "module": "dist/bundle.esm.js",
@@ -12,7 +12,8 @@
   "scripts": {
     "build": "./scripts/build.sh",
     "dev": "./scripts/dev.sh",
-    "lint": "eslint \"src/**/*.{js,ts}\" --quiet --fix",
+    "lint": "eslint \"src/**/*.{js,ts}\" --quiet",
+    "fix": "eslint \"src/**/*.{js,ts}\" --quiet --fix",
     "test": "jest --passWithNoTests"
   },
   "repository": "git://github.com/ndench/up-bank-api.git",
