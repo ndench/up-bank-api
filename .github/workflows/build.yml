@@ -9,6 +9,9 @@ on:
   push:
     branches:
       - master
+    ignore-tags:
+      # Do not run on any tags, because the publish workflow will handle this
+      - '**'
 
 jobs:
   build:
