@@ -67,6 +67,14 @@ The following modules of the Up API are fully supported:
 - [Tags](https://developer.up.com.au/#tags)
 - [Webhooks](https://developer.up.com.au/#webhooks)
 
+## Publishing
+
+To publish a new version we use the `yarn release` command, which is configured to run the `np` command
+as [detailed here](https://zellwk.com/blog/publish-to-npm/). This command will update the `package.json`
+version number, and open a GitHub page in your browser ready to tag a release.
+
+Publishing to npm is handled by the `publish` GitHub action.
+
 ## Special thanks
 
 Special thanks to [LifeBac/intakeq-api](https://github.com/LifeBac/intakeq-api) for API architecture inspiration.
