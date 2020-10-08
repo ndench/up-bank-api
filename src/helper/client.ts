@@ -20,13 +20,13 @@ export class UpClient {
     return res.data;
   }
 
-  public async post<T>(url: string, payload: T): Promise<void> {
-    await this.api.post<T>(url, { data: payload });
-    return;
+  public async post<T, V>(url: string, payload?: T): Promise<V> {
+    const res = await this.api.post<V>(url, { data: payload });
+    return res.data;
   }
 
-  public async delete<T>(url: string, payload: T): Promise<void> {
-    await this.api.delete<T>(url, { data: { data: payload } });
-    return;
+  public async delete<T, V>(url: string, payload?: T): Promise<V> {
+    const res = await this.api.delete<V>(url, { data: { data: payload } });
+    return res.data;
   }
 }
