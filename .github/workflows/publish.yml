@@ -31,7 +31,7 @@ jobs:
       # Install
       - run: npm install
       # Lint
-      - run: npm lint
+      - run: npm run lint
       # Runs all tests
       - run: npm run test
       # Run the build as well, to make sure it does build
