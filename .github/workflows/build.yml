@@ -8,7 +8,7 @@ on:
       - reopened
   push:
     branches:
-      - $default-branch
+      - master
 
 jobs:
   build:
