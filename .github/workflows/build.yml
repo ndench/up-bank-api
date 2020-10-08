@@ -1,17 +1,20 @@
-name: Publish
-# This workflow is triggered when a new release is publishshed (ie. tag created)
+name: Build
+# This workflow is triggered for every pull request and push to master
 on:
-  release:
+  pull_request:
     types:
-      - published
+      - opened
+      - synchronize
+      - reopened
+  push:
+    branches:
+      - $default-branch
 
 jobs:
-  publish:
-    name: Lint, Run Test, Build and Publish
+  build:
+    name: Lint, Run Test, Build
     # This job runs on Linux
     runs-on: ubuntu-latest
-    env:
-      NODE_AUTH_TOKEN: ${{ secrets.NPM_PUBLISH_TOKEN }}
     steps:
       # Checkout the repo
       - uses: actions/checkout@v2
@@ -26,8 +29,6 @@ jobs:
           key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
             ${{ runner.os }}-node-
-      # Authenticate
-      - run: npm config set //registry.npmjs.org/:_authToken=${NODE_AUTH_TOKEN}
       # Install
       - run: npm install
       # Lint
@@ -36,5 +37,3 @@ jobs:
       - run: npm run test
       # Run the build as well, to make sure it does build
       - run: npm run build
-      # Publish
-      - run: npm publish
