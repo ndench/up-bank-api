@@ -11,8 +11,9 @@ on:
       - $default-branch
 
 jobs:
-  install:
-    name: NPM install
+  build:
+    name: Lint, Run Test, Build
+    # This job runs on Linux
     runs-on: ubuntu-latest
     steps:
       # Checkout the repo
@@ -30,24 +31,9 @@ jobs:
             ${{ runner.os }}-node-
       # Install
       - run: npm install
-  lint:
-    name: Run lint
-    needs: install
-    runs-on: ubuntu-latest
-    steps:
       # Lint
       - run: npm run lint
-  test:
-    name: Run tests
-    needs: install
-    runs-on: ubuntu-latest
-    steps:
       # Runs all tests
       - run: npm run test
-  build:
-    name: Run prod build
-    needs: install
-    runs-on: ubuntu-latest
-    steps:
       # Run the build as well, to make sure it does build
       - run: npm run build
