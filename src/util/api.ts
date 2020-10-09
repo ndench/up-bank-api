@@ -1,6 +1,6 @@
 import { Pong } from './interfaces';
 import { UpClient } from '../helper/client';
-import { ENDPOINTS } from 'src/constants';
+import { ENDPOINTS } from '../constants';
 
 /**
  * Some endpoints exist not to expose data, but to test the API itself.

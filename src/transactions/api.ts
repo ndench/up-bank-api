@@ -4,7 +4,7 @@ import {
   TransactionResource,
 } from './interfaces';
 import { UpClient } from '../helper/client';
-import { ENDPOINTS } from 'src/constants';
+import { ENDPOINTS } from '../constants';
 
 /**
  * Transactions represent the movement of money into and out of an account. They have many

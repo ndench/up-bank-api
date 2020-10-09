@@ -1,6 +1,6 @@
 import { CategoryResource, ListCategoriesRequest } from './interfaces';
 import { UpClient } from '../helper/client';
-import { ENDPOINTS } from 'src/constants';
+import { ENDPOINTS } from '../constants';
 
 /**
  * Categories enable understanding where your money goes by driving powerful insights in Up.

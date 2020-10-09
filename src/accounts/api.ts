@@ -4,7 +4,7 @@ import {
   ListAccountsRequest,
 } from './interfaces';
 import { UpClient } from '../helper/client';
-import { ENDPOINTS } from 'src/constants';
+import { ENDPOINTS } from '../constants';
 
 /**
  * Accounts represent the underlying store used to track balances and the transactions

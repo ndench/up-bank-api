@@ -7,7 +7,7 @@ import {
   WebhookResource,
 } from './interfaces';
 import { UpClient } from '../helper/client';
-import { ENDPOINTS } from 'src/constants';
+import { ENDPOINTS } from '../constants';
 
 /**
  * Webhooks provide a mechanism for a configured URL to receive events when

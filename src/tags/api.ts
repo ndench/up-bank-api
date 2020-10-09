@@ -4,7 +4,7 @@ import {
   TagInputResourceIdentifier,
 } from './interfaces';
 import { UpClient } from '../helper/client';
-import { ENDPOINTS } from 'src/constants';
+import { ENDPOINTS } from '../constants';
 
 /**
  * Tags are custom labels that can be associated with transactions on Up. Within
