@@ -4,8 +4,7 @@ import {
   ListAccountsRequest,
 } from './interfaces';
 import { UpClient } from '../helper/client';
-
-const ENDPOINT = 'accounts';
+import { ENDPOINTS } from 'src/constants';
 
 /**
  * Accounts represent the underlying store used to track balances and the transactions
@@ -29,7 +28,7 @@ export class AccountsApi {
     }
 
     return this.api.get<ListAccountResponse>(
-      `${ENDPOINT}?${urlParams.join('&')}`
+      `${ENDPOINTS.ACCOUNTS}?${urlParams.join('&')}`
     );
   }
 
@@ -38,6 +37,8 @@ export class AccountsApi {
    * @param accountId The unique identifier for the account. e.g. e7a729f0-aaa7-4d6a-b231-f794c0155e1d
    */
   public async retrieve(accountId: string): Promise<{ data: AccountResource }> {
-    return this.api.get<{ data: AccountResource }>(`${ENDPOINT}/${accountId}`);
+    return this.api.get<{ data: AccountResource }>(
+      `${ENDPOINTS.ACCOUNTS}/${accountId}`
+    );
   }
 }

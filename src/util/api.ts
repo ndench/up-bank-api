@@ -1,7 +1,6 @@
 import { Pong } from './interfaces';
 import { UpClient } from '../helper/client';
-
-const ENDPOINT = 'util';
+import { ENDPOINTS } from 'src/constants';
 
 /**
  * Some endpoints exist not to expose data, but to test the API itself.
@@ -17,6 +16,6 @@ export class UtilApi {
    * On failure an HTTP 401 error response is returned.
    */
   public async ping(): Promise<Pong> {
-    return this.api.get<Pong>(`${ENDPOINT}/ping`);
+    return this.api.get<Pong>(`${ENDPOINTS.UTIL}/ping`);
   }
 }

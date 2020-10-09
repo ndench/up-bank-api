@@ -1,7 +1,6 @@
 import { CategoryResource, ListCategoriesRequest } from './interfaces';
 import { UpClient } from '../helper/client';
-
-const ENDPOINT = 'categories';
+import { ENDPOINTS } from 'src/constants';
 
 /**
  * Categories enable understanding where your money goes by driving powerful insights in Up.
@@ -24,7 +23,7 @@ export class CategoriesApi {
     }
 
     return this.api.get<{ data: CategoryResource[] }>(
-      `${ENDPOINT}?${urlParams.join('&')}`
+      `${ENDPOINTS.CATEGORIES}?${urlParams.join('&')}`
     );
   }
 
@@ -36,7 +35,7 @@ export class CategoriesApi {
     categoryId: string
   ): Promise<{ data: CategoryResource }> {
     return this.api.get<{ data: CategoryResource }>(
-      `${ENDPOINT}/${categoryId}`
+      `${ENDPOINTS.CATEGORIES}/${categoryId}`
     );
   }
 }

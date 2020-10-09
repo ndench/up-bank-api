@@ -4,8 +4,7 @@ import {
   TransactionResource,
 } from './interfaces';
 import { UpClient } from '../helper/client';
-
-const ENDPOINT = 'transactions';
+import { ENDPOINTS } from 'src/constants';
 
 /**
  * Transactions represent the movement of money into and out of an account. They have many
@@ -28,7 +27,7 @@ export class TransactionsApi {
     const urlParams = this.createUrlParams(params);
 
     return this.api.get<ListTransactionsResponse>(
-      `${ENDPOINT}?${urlParams.join('&')}`
+      `${ENDPOINTS.TRANSACTIONS}?${urlParams.join('&')}`
     );
   }
 
@@ -40,7 +39,7 @@ export class TransactionsApi {
     transactionId: string
   ): Promise<{ data: TransactionResource }> {
     return this.api.get<{ data: TransactionResource }>(
-      `${ENDPOINT}/${transactionId}`
+      `${ENDPOINTS.TRANSACTIONS}/${transactionId}`
     );
   }
 
@@ -58,7 +57,7 @@ export class TransactionsApi {
     const urlParams = this.createUrlParams(params);
 
     return this.api.get<ListTransactionsResponse>(
-      `/accounts/${accountId}/${ENDPOINT}?${urlParams.join('&')}`
+      `/accounts/${accountId}/${ENDPOINTS.TRANSACTIONS}?${urlParams.join('&')}`
     );
   }
 

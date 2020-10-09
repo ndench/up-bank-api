@@ -1,11 +1,12 @@
 import axios, { AxiosInstance } from 'axios';
+import { BASE_URL } from 'src/constants';
 
 export class UpClient {
   private api: AxiosInstance;
 
   constructor(apiKey: string) {
     this.api = axios.create({
-      baseURL: 'https://api.up.com.au/api/v1/',
+      baseURL: BASE_URL,
       timeout: 5000,
       headers: {
         Accept: 'application/json',
