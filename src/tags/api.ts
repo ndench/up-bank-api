@@ -4,9 +4,7 @@ import {
   TagInputResourceIdentifier,
 } from './interfaces';
 import { UpClient } from '../helper/client';
-
-const LIST_ENDPOINT = 'tags';
-const TRANSACTION_ENDPOINT = 'transactions';
+import { ENDPOINTS } from '../constants';
 
 /**
  * Tags are custom labels that can be associated with transactions on Up. Within
@@ -31,7 +29,7 @@ export class TagsApi {
     }
 
     return this.api.get<{ data: ListTagsResponse[] }>(
-      `${LIST_ENDPOINT}?${urlParams.join('&')}`
+      `${ENDPOINTS.TAGS}?${urlParams.join('&')}`
     );
   }
 
@@ -73,6 +71,6 @@ export class TagsApi {
    * 0a3c4bdd-1de5-4b9b-bf9e-53fb0b5f2cd7
    */
   private static buildTransactionTagsPath(transactionId: string) {
-    return `${TRANSACTION_ENDPOINT}/${transactionId}/relationships/tags`;
+    return `${ENDPOINTS.TRANSACTIONS}/${transactionId}/relationships/tags`;
   }
 }

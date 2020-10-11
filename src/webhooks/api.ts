@@ -7,8 +7,7 @@ import {
   WebhookResource,
 } from './interfaces';
 import { UpClient } from '../helper/client';
-
-const ENDPOINT = 'webhooks';
+import { ENDPOINTS } from '../constants';
 
 /**
  * Webhooks provide a mechanism for a configured URL to receive events when
@@ -31,7 +30,7 @@ export class WebhookApi {
     }
 
     return this.api.get<{ data: ListWebhooksResponse[] }>(
-      `${ENDPOINT}?${urlParams.join('&')}`
+      `${ENDPOINTS.WEBHOOKS}?${urlParams.join('&')}`
     );
   }
 
@@ -55,7 +54,7 @@ export class WebhookApi {
       },
     };
     return this.api.post<WebhookInputResource, CreateWebhookResponse>(
-      ENDPOINT,
+      ENDPOINTS.WEBHOOKS,
       data
     );
   }
@@ -66,7 +65,7 @@ export class WebhookApi {
    * a3f1e92b-b790-42cf-afe7-6f4efad9fa9d
    */
   public async retrieve(id: string): Promise<WebhookResource> {
-    return this.api.get<WebhookResource>(`${ENDPOINT}/${id}`);
+    return this.api.get<WebhookResource>(`${ENDPOINTS.WEBHOOKS}/${id}`);
   }
 
   /**
@@ -76,7 +75,7 @@ export class WebhookApi {
    * a3f1e92b-b790-42cf-afe7-6f4efad9fa9d
    */
   public async delete(id: string): Promise<void> {
-    return this.api.delete(`${ENDPOINT}/${id}`);
+    return this.api.delete(`${ENDPOINTS.WEBHOOKS}/${id}`);
   }
 
   /**
@@ -87,6 +86,8 @@ export class WebhookApi {
    * a3f1e92b-b790-42cf-afe7-6f4efad9fa9d
    */
   public async ping(id: string): Promise<WebhookEventResource> {
-    return this.api.post<void, WebhookEventResource>(`${ENDPOINT}/${id}/ping`);
+    return this.api.post<void, WebhookEventResource>(
+      `${ENDPOINTS.WEBHOOKS}/${id}/ping`
+    );
   }
 }
