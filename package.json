@@ -1,6 +1,6 @@
 {
   "name": "up-bank-api",
-  "version": "1.2.2",
+  "version": "1.2.3",
   "description": "The Up Bank API TypeScript wrapper",
   "main": "dist/bundle.js",
   "module": "dist/bundle.esm.js",
