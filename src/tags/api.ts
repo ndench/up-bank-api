@@ -20,15 +20,13 @@ export class TagsApi {
    * Retrieve a list of all tags currently in use. The returned list is not
    * paginated.
    */
-  public async list(
-    params: ListTagsRequest = {}
-  ): Promise<{ data: ListTagsResponse[] }> {
+  public async list(params: ListTagsRequest = {}): Promise<ListTagsResponse> {
     const urlParams = [];
     if (params.pageSize) {
       urlParams.push(`page[size]=${params.pageSize}`);
     }
 
-    return this.api.get<{ data: ListTagsResponse[] }>(
+    return this.api.get<ListTagsResponse>(
       `${ENDPOINTS.TAGS}?${urlParams.join('&')}`
     );
   }

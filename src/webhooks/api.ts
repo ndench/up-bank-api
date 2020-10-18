@@ -23,13 +23,13 @@ export class WebhookApi {
    */
   public async list(
     params: ListWebhooksRequest = {}
-  ): Promise<{ data: ListWebhooksResponse[] }> {
+  ): Promise<ListWebhooksResponse> {
     const urlParams = [];
     if (params.pageSize) {
       urlParams.push(`page[size]=${params.pageSize}`);
     }
 
-    return this.api.get<{ data: ListWebhooksResponse[] }>(
+    return this.api.get<ListWebhooksResponse>(
       `${ENDPOINTS.WEBHOOKS}?${urlParams.join('&')}`
     );
   }
