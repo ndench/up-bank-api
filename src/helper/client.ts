@@ -5,6 +5,10 @@ export class UpClient {
   private api: AxiosInstance;
 
   constructor(apiKey: string) {
+    this.updateApiKey(apiKey);
+  }
+
+  public updateApiKey(apiKey: string) {
     this.api = axios.create({
       baseURL: BASE_URL,
       timeout: 5000,

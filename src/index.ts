@@ -7,21 +7,27 @@ import { TagsApi } from './tags/api';
 import { WebhookApi } from './webhooks/api';
 
 export class UpApi {
-  public util: UtilApi;
-  public accounts: AccountsApi;
-  public categories: CategoriesApi;
-  public transactions: TransactionsApi;
-  public tags: TagsApi;
-  public webhooks: WebhookApi;
+  public readonly util: UtilApi;
+  public readonly accounts: AccountsApi;
+  public readonly categories: CategoriesApi;
+  public readonly transactions: TransactionsApi;
+  public readonly tags: TagsApi;
+  public readonly webhooks: WebhookApi;
+
+  private readonly api: UpClient;
 
   constructor(apiKey: string) {
-    const api = new UpClient(apiKey);
-    this.util = new UtilApi(api);
-    this.accounts = new AccountsApi(api);
-    this.categories = new CategoriesApi(api);
-    this.transactions = new TransactionsApi(api);
-    this.tags = new TagsApi(api);
-    this.webhooks = new WebhookApi(api);
+    this.api = new UpClient(apiKey);
+    this.util = new UtilApi(this.api);
+    this.accounts = new AccountsApi(this.api);
+    this.categories = new CategoriesApi(this.api);
+    this.transactions = new TransactionsApi(this.api);
+    this.tags = new TagsApi(this.api);
+    this.webhooks = new WebhookApi(this.api);
+  }
+
+  public updateApiKey(apiKey: string) {
+    this.api.updateApiKey(apiKey);
   }
 }
 
