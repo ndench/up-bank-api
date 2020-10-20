@@ -1,5 +1,7 @@
 {
   "name": "up-bank-api",
-  "main": "temp-dec/index.d.ts",
-  "out": "../dist/index.d.ts"
+  "main": "dist/index.d.ts",
+  "out": "index.d.ts",
+  "removeSource": true,
+  "outputAsModuleFolder": true
 }
