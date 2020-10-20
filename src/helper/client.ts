@@ -2,10 +2,12 @@ import axios, { AxiosInstance } from 'axios';
 import { BASE_URL } from '../constants';
 
 export class UpClient {
-  private api: AxiosInstance;
+  private api: AxiosInstance | null = null;
 
-  constructor(apiKey: string) {
-    this.updateApiKey(apiKey);
+  constructor(apiKey: string | null = null) {
+    if (null !== apiKey) {
+      this.updateApiKey(apiKey);
+    }
   }
 
   public updateApiKey(apiKey: string) {
@@ -21,17 +23,27 @@ export class UpClient {
   }
 
   public async get<T>(url: string): Promise<T> {
-    const res = await this.api.get<T>(url);
+    const res = await this.getApi().get<T>(url);
     return res.data;
   }
 
   public async post<T, V>(url: string, payload?: T): Promise<V> {
-    const res = await this.api.post<V>(url, { data: payload });
+    const res = await this.getApi().post<V>(url, { data: payload });
     return res.data;
   }
 
   public async delete<T, V>(url: string, payload?: T): Promise<V> {
-    const res = await this.api.delete<V>(url, { data: { data: payload } });
+    const res = await this.getApi().delete<V>(url, { data: { data: payload } });
     return res.data;
+  }
+
+  private getApi(): AxiosInstance {
+    if (null == this.api) {
+      throw new Error(
+        'You must specify an apiKey first, try calling updateApi().'
+      );
+    }
+
+    return this.api;
   }
 }

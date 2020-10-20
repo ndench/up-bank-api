@@ -16,7 +16,7 @@ export class UpApi {
 
   private readonly api: UpClient;
 
-  constructor(apiKey: string) {
+  constructor(apiKey: string | null = null) {
     this.api = new UpClient(apiKey);
     this.util = new UtilApi(this.api);
     this.accounts = new AccountsApi(this.api);
