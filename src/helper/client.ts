@@ -4,13 +4,13 @@ import { BASE_URL } from '../constants';
 export class UpClient {
   private api: AxiosInstance | null = null;
 
-  constructor(apiKey: string | null = null): void {
+  constructor(apiKey: string | null = null) {
     if (null !== apiKey) {
       this.updateApiKey(apiKey);
     }
   }
 
-  public updateApiKey(apiKey: string) {
+  public updateApiKey(apiKey: string): void {
     this.api = axios.create({
       baseURL: BASE_URL,
       timeout: 5000,
