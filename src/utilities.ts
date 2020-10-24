@@ -11,7 +11,7 @@ export function isUpApiError(e: unknown): e is UpApiError {
     return false;
   }
 
-  const response = axiosError.response;
+  const { response } = axiosError;
   if (response === undefined) {
     return false;
   }

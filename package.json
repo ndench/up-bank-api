@@ -12,8 +12,8 @@
   "scripts": {
     "build": "./scripts/build.sh",
     "dev": "./scripts/dev.sh",
-    "lint": "eslint src",
-    "fix": "eslint src --fix",
+    "lint": "eslint src test",
+    "fix": "eslint src test --fix",
     "test": "jest",
     "release": "np --no-publish"
   },

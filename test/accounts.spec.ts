@@ -1,6 +1,6 @@
 import { UpClient } from 'helper/client';
-import { UpApi } from "index";
-import { mocked } from "ts-jest/utils";
+import { UpApi } from 'index';
+import { mocked } from 'ts-jest/utils';
 jest.mock('helper/client');
 
 describe('the accounts api', () => {
