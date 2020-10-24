@@ -1,9 +1,9 @@
 import {
-  CreateWebhookResponse,
   ListWebhooksRequest,
   ListWebhooksResponse,
-  WebhookEventResource,
+  CreateWebhookResponse,
   WebhookInputResource,
+  WebhookEventResource,
   WebhookResource,
 } from './interfaces';
 import { UpClient } from '../helper/client';

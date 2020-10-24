@@ -5,7 +5,7 @@ export class UpClient {
   private api: AxiosInstance | null = null;
 
   constructor(apiKey: string | null = null) {
-    if (apiKey !== null) {
+    if (null !== apiKey) {
       this.updateApiKey(apiKey);
     }
   }
@@ -38,7 +38,7 @@ export class UpClient {
   }
 
   private getApi(): AxiosInstance {
-    if (this.api == null) {
+    if (null == this.api) {
       throw new Error(
         'You must specify an apiKey first, try calling updateApi().'
       );
