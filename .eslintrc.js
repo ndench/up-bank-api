@@ -3,14 +3,56 @@ module.exports = {
   parserOptions: {
     ecmaVersion: 2020, // Allows for the parsing of modern ECMAScript features
     sourceType: 'module', // Allows for the use of imports
+    'project': './tsconfig.json',
+    'ecmaFeatures': {
+      'impliedStrict': true,
+      'arrowFunctions': true,
+      'blockBindings': true,
+      'classes': true,
+      'defaultParams': true,
+      'destructuring': true,
+      'forOf': true,
+      'generators': false,
+      'modules': true,
+      'objectLiteralComputedProperties': true,
+      'objectLiteralDuplicateProperties': false,
+      'objectLiteralShorthandMethods': true,
+      'objectLiteralShorthandProperties': true,
+      'spread': true,
+      'superInFunctions': true,
+      'templateStrings': true,
+      'jsx': false,
+    }
   },
   extends: [
-    'plugin:@typescript-eslint/recommended', // Uses the recommended rules from the @typescript-eslint/eslint-plugin
-    'prettier/@typescript-eslint', // Uses eslint-config-prettier to disable ESLint rules from @typescript-eslint/eslint-plugin that would conflict with prettier
-    'plugin:prettier/recommended', // Enables eslint-plugin-prettier and eslint-config-prettier. This will display prettier errors as ESLint errors. Make sure this is always the last configuration in the extends array.
+    'eslint:recommended',
+    'plugin:@typescript-eslint/recommended',
+    'plugin:@typescript-eslint/recommended-requiring-type-checking',
+    'prettier/@typescript-eslint',
+    'plugin:prettier/recommended',
   ],
   rules: {
-    // Place to specify ESLint rules. Can be used to overwrite rules specified from the extended configs
-    // e.g. "@typescript-eslint/explicit-function-return-type": "off",
+    // Possible errors
+    'no-console': 'error',
+    'no-extra-parens': 'error',
+    // Best practices
+    'no-alert': 'error',
+    'no-else-return': 'error',
+    'no-eval': 'error',
+    'no-implicit-coercion': 'error',
+    'require-await': 'error',
+    // Strict
+    'strict': 'error',
+    // Stylistic
+    'spaced-comment': 'error',
+    'multiline-comment-style': 'error',
+    'camelcase': 'error',
+    'brace-style': 'error',
+    'semi-style': 'error',
+    // ES6
+    'no-var': 'error',
+    'no-duplicate-imports': 'error',
+    // Seems to have an issue with jest mocks
+    '@typescript-eslint/unbound-method': 'off',
   },
 };
