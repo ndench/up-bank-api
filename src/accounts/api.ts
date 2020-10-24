@@ -19,9 +19,7 @@ export class AccountsApi {
    * Retrieve a paginated list of all accounts for the currently authenticated user.
    * The returned list is paginated and can be scrolled by following the prev and next links where present.
    */
-  public async list(
-    params: ListAccountsRequest = {}
-  ): Promise<ListAccountResponse> {
+  public list(params: ListAccountsRequest = {}): Promise<ListAccountResponse> {
     const urlParams = [];
     if (params.pageSize) {
       urlParams.push(`page[size]=${params.pageSize}`);
@@ -36,7 +34,7 @@ export class AccountsApi {
    * Retrieve a specific account by providing its unique identifier.
    * @param accountId The unique identifier for the account. e.g. e7a729f0-aaa7-4d6a-b231-f794c0155e1d
    */
-  public async retrieve(accountId: string): Promise<{ data: AccountResource }> {
+  public retrieve(accountId: string): Promise<{ data: AccountResource }> {
     return this.api.get<{ data: AccountResource }>(
       `${ENDPOINTS.ACCOUNTS}/${accountId}`
     );

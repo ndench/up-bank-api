@@ -90,7 +90,7 @@ export interface TransactionResource {
     /**
      * If this transaction is currently in the HELD status, or was ever in the HELD status,
      * the amount and foreignAmount of the transaction while HELD.
-     * */
+     */
     holdInfo: HoldInfoObject | null;
     /** Details of how this transaction was rounded-up. If no Round Up was applied this field will be null. */
     roundUp: RoundUpObject | null;
@@ -110,7 +110,7 @@ export interface TransactionResource {
     /**
      * The date-time at which this transaction settled. This field will be null for transactions
      * that are currently in the HELD status.
-     * */
+     */
     settledAt: string;
     /** The date-time at which this transaction was first encountered. */
     createdAt: string;

@@ -26,7 +26,7 @@ export class UpApi {
     this.webhooks = new WebhookApi(this.api);
   }
 
-  public updateApiKey(apiKey: string) {
+  public updateApiKey(apiKey: string): void {
     this.api.updateApiKey(apiKey);
   }
 }

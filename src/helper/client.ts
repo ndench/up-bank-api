@@ -10,7 +10,7 @@ export class UpClient {
     }
   }
 
-  public updateApiKey(apiKey: string) {
+  public updateApiKey(apiKey: string): void {
     this.api = axios.create({
       baseURL: BASE_URL,
       timeout: 5000,

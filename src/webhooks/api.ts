@@ -21,9 +21,7 @@ export class WebhookApi {
    * Retrieve a list of configured webhooks. The returned list is not
    * paginated.
    */
-  public async list(
-    params: ListWebhooksRequest = {}
-  ): Promise<ListWebhooksResponse> {
+  public list(params: ListWebhooksRequest = {}): Promise<ListWebhooksResponse> {
     const urlParams = [];
     if (params.pageSize) {
       urlParams.push(`page[size]=${params.pageSize}`);
@@ -43,7 +41,7 @@ export class WebhookApi {
    * @param description An optional description for this webhook, up to 64
    * characters in length.
    */
-  public async create(
+  public create(
     url: string,
     description?: string | null
   ): Promise<CreateWebhookResponse> {
@@ -64,7 +62,7 @@ export class WebhookApi {
    * @param id The unique identifier for the webhook. e.g.
    * a3f1e92b-b790-42cf-afe7-6f4efad9fa9d
    */
-  public async retrieve(id: string): Promise<WebhookResource> {
+  public retrieve(id: string): Promise<WebhookResource> {
     return this.api.get<WebhookResource>(`${ENDPOINTS.WEBHOOKS}/${id}`);
   }
 
@@ -74,18 +72,18 @@ export class WebhookApi {
    * @param id The unique identifier for the webhook. e.g.
    * a3f1e92b-b790-42cf-afe7-6f4efad9fa9d
    */
-  public async delete(id: string): Promise<void> {
+  public delete(id: string): Promise<void> {
     return this.api.delete(`${ENDPOINTS.WEBHOOKS}/${id}`);
   }
 
   /**
    * Send a `PING` event to a webhook by providing its unique identifier. This is
    * useful for testing and debugging purposes. The event is delivered
-   * asynchronously and its data is returned in the response to this request
+   *hronously and its data is returned in the response to this request
    * @param id The unique identifier for the webhook. e.g.
    * a3f1e92b-b790-42cf-afe7-6f4efad9fa9d
    */
-  public async ping(id: string): Promise<WebhookEventResource> {
+  public ping(id: string): Promise<WebhookEventResource> {
     return this.api.post<void, WebhookEventResource>(
       `${ENDPOINTS.WEBHOOKS}/${id}/ping`
     );

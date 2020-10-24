@@ -33,10 +33,10 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-node-
       # Install
-      - run: npm install
+      - run: yarn install
       # Lint
-      - run: npm run lint
+      - run: yarn lint
       # Runs all tests
-      - run: npm run test
+      - run: yarn test
       # Run the build as well, to make sure it does build
-      - run: npm run build
+      - run: yarn build

@@ -20,7 +20,7 @@ export class TagsApi {
    * Retrieve a list of all tags currently in use. The returned list is not
    * paginated.
    */
-  public async list(params: ListTagsRequest = {}): Promise<ListTagsResponse> {
+  public list(params: ListTagsRequest = {}): Promise<ListTagsResponse> {
     const urlParams = [];
     if (params.pageSize) {
       urlParams.push(`page[size]=${params.pageSize}`);
@@ -39,7 +39,7 @@ export class TagsApi {
    * 0a3c4bdd-1de5-4b9b-bf9e-53fb0b5f2cd7
    * @param tags The tags to add to the transaction.
    */
-  public async addTagsToTransaction(
+  public addTagsToTransaction(
     transactionId: string,
     tags: TagInputResourceIdentifier[]
   ): Promise<void> {
@@ -53,7 +53,7 @@ export class TagsApi {
    * 0a3c4bdd-1de5-4b9b-bf9e-53fb0b5f2cd7
    * @param tags The tags to remove from the transaction.
    */
-  public async removeTagsFromTransaction(
+  public removeTagsFromTransaction(
     transactionId: string,
     tags: TagInputResourceIdentifier[]
   ): Promise<void> {
