@@ -4,7 +4,7 @@ import { BASE_URL } from '../constants';
 export class UpClient {
   private api: AxiosInstance | null = null;
 
-  constructor(apiKey: string | null = null) {
+  constructor(apiKey: string | null = null): void {
     if (null !== apiKey) {
       this.updateApiKey(apiKey);
     }

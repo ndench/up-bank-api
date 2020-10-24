@@ -21,7 +21,7 @@ export class TransactionsApi {
    * the query string. These filter parameters should not be used for pagination. Results are ordered
    * newest first to oldest last.
    */
-  public async list(
+  public list(
     params: ListTransactionRequest = {}
   ): Promise<ListTransactionsResponse> {
     const urlParams = this.createUrlParams(params);
@@ -35,7 +35,7 @@ export class TransactionsApi {
    * Retrieve a specific transaction by providing its unique identifier.
    * @param transactionId The unique identifier for the transaction. e.g. 58c28694-4639-4992-94f3-b030bdb06a8e
    */
-  public async retrieve(
+  public retrieve(
     transactionId: string
   ): Promise<{ data: TransactionResource }> {
     return this.api.get<{ data: TransactionResource }>(
@@ -50,7 +50,7 @@ export class TransactionsApi {
    * should not be used for pagination. Results are ordered newest first to oldest last.
    * @param accountId The unique identifier for the account. e.g. 7a2dfb6f-4c5c-47db-9a95-8794b1ae1470
    */
-  public async listByAccount(
+  public listByAccount(
     accountId: string,
     params: ListTransactionRequest = {}
   ): Promise<ListTransactionsResponse> {
@@ -62,7 +62,7 @@ export class TransactionsApi {
   }
 
   private createUrlParams(params: ListTransactionRequest): string[] {
-    const urlParams = [];
+    const urlParams: string[] = [];
     if (params.pageSize) {
       urlParams.push(`page[size]=${params.pageSize}`);
     }

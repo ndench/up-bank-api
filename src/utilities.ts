@@ -1,7 +1,7 @@
 import { ErrorResponse, UpApiError } from './interfaces';
 import { AxiosError } from 'axios';
 
-export function isUpApiError(e: any): e is UpApiError {
+export function isUpApiError(e: unknown): e is UpApiError {
   if (!(e instanceof Error)) {
     return false;
   }
