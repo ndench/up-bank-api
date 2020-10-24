@@ -25,8 +25,8 @@ describe('the transactions api', () => {
 
   it('lists transactions with query params', async () => {
     const params: ListTransactionRequest = {
-      pageSize: faker.random.number,
-      filterCategory: faker.random.word,
+      pageSize: faker.random.number(),
+      filterCategory: faker.random.word(),
     };
 
     await api.transactions.list(params);

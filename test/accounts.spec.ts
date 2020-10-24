@@ -25,7 +25,7 @@ describe('the accounts api', () => {
 
   it('lists accounts with query params', async () => {
     const params: ListAccountsRequest = {
-      pageSize: faker.random.number,
+      pageSize: faker.random.number(),
     };
 
     await api.accounts.list(params);

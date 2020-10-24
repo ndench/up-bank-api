@@ -25,7 +25,7 @@ describe('the webhooks api', () => {
 
   it('lists webhooks with query params', async () => {
     const params: ListWebhooksRequest = {
-      pageSize: faker.random.number,
+      pageSize: faker.random.number(),
     };
 
     await api.webhooks.list(params);

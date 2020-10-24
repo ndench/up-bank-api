@@ -25,7 +25,7 @@ describe('the tags api', () => {
 
   it('lists tags with query params', async () => {
     const params: ListTagsRequest = {
-      pageSize: faker.random.number,
+      pageSize: faker.random.number(),
     };
 
     await api.tags.list(params);
