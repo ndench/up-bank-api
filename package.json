@@ -42,7 +42,7 @@
   },
   "lint-staged": {
     "src/**/*.{js,ts}": [
-      "fix"
+      "eslint src --fix"
     ]
   },
   "devDependencies": {
