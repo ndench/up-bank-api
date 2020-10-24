@@ -1,44 +1,25 @@
 import { UpClient } from 'helper/client';
 import { UpApi } from "index";
-import mockAxios from 'jest-mock-axios';
 import { mocked } from "ts-jest/utils";
-import { BASE_URL } from "../src/constants";
+jest.mock('helper/client');
 
 describe('the accounts api', () => {
+  const mockedClient = mocked(UpClient, true);
   let api: UpApi;
 
   beforeEach(() => {
     // Clear all instances and calls to constructor and all methods:
-    mockAxios.reset();
+    mockedClient.mockClear();
 
-    api = new UpApi('foobar');
+    api = new UpApi();
   });
 
-  it('updates the api key', async () => {
-    api.updateApiKey('foobar');
+  it('retrieves an account by id', async () => {
+    const accountId = 'foobar';
 
-    expect(mockAxios.create).toHaveBeenCalledWith({
-      baseURL: BASE_URL,
-      timeout: 5000,
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-        Authorization: `Bearer foobar`,
-      },
-    });
-  });
+    await api.accounts.retrieve(accountId);
 
-  it('fetches account by id', async () => {
-    await api.accounts.retrieve('baz');
-
-    mockAxios.mockResponse({
-      data: {},
-      status: 200,
-      statusText: 'OK',
-      headers: {},
-      config: {},
-    });
-
-    expect(mockAxios.get).toHaveBeenCalledWith(`/accounts/baz`)
+    const mockClient = mockedClient.mock.instances[0];
+    expect(mockClient.get).toHaveBeenCalledWith(`accounts/${accountId}`);
   });
 });
