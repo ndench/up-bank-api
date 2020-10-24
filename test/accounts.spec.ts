@@ -1,13 +1,15 @@
 import { UpClient } from '../src/helper/client';
 import { UpApi } from "../src";
+import { mocked } from "ts-jest/utils";
 jest.mock('../src/helper/client');
 
 describe('the accounts api', () => {
+  const mockedClient = mocked(UpClient, true);
   let api: UpApi;
 
   beforeEach(() => {
     // Clear all instances and calls to constructor and all methods:
-    UpClient.mockClear();
+    mockedClient.mockClear();
 
     api = new UpApi();
   });
@@ -17,7 +19,7 @@ describe('the accounts api', () => {
 
     await api.accounts.retrieve(accountId);
 
-    const mockClient = UpClient.mock.instances[0];
-    expect(mockClient.get).toHaveBeenCalledWith(accountId);
+    const mockClient = mockedClient.mock.instances[0];
+    expect(mockClient.get).toHaveBeenCalledWith(`accounts/${accountId}`);
   });
 });

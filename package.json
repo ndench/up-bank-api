@@ -14,7 +14,7 @@
     "dev": "./scripts/dev.sh",
     "lint": "eslint src",
     "fix": "eslint src --fix",
-    "test": "jest --passWithNoTests",
+    "test": "jest",
     "release": "np --no-publish"
   },
   "repository": "git://github.com/ndench/up-bank-api.git",
