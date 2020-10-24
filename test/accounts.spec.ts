@@ -1,6 +1,8 @@
 import { UpClient } from 'helper/client';
-import { UpApi } from 'index';
+import { ListAccountsRequest, UpApi } from 'index';
 import { mocked } from 'ts-jest/utils';
+import faker from 'faker';
+
 jest.mock('helper/client');
 
 describe('the accounts api', () => {
@@ -14,8 +16,26 @@ describe('the accounts api', () => {
     api = new UpApi();
   });
 
+  it('lists accounts without query params', async () => {
+    await api.accounts.list();
+
+    const mockClient = mockedClient.mock.instances[0];
+    expect(mockClient.get).toHaveBeenCalledWith(`accounts?`);
+  });
+
+  it('lists accounts with query params', async () => {
+    const params: ListAccountsRequest = {
+      pageSize: 50,
+    }
+
+    await api.accounts.list(params);
+
+    const mockClient = mockedClient.mock.instances[0];
+    expect(mockClient.get).toHaveBeenCalledWith(`accounts?page[size]=50`);
+  });
+
   it('retrieves an account by id', async () => {
-    const accountId = 'foobar';
+    const accountId = faker.random.uuid;
 
     await api.accounts.retrieve(accountId);
 
