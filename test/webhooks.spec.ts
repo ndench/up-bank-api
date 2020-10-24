@@ -48,7 +48,7 @@ describe('the webhooks api', () => {
   });
 
   it('creates a webhook with a description', async () => {
-    const url = faker.internet.url;
+    const url = faker.internet.url();
     const description = faker.company.bs();
 
     await api.webhooks.create(url, description);
