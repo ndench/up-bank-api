@@ -43,6 +43,9 @@
   "lint-staged": {
     "src/**/*.{js,ts}": [
       "eslint src --fix"
+    ],
+    "test/**/*.{js,ts}": [
+      "eslint test --fix"
     ]
   },
   "devDependencies": {
