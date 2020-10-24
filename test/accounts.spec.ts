@@ -25,17 +25,19 @@ describe('the accounts api', () => {
 
   it('lists accounts with query params', async () => {
     const params: ListAccountsRequest = {
-      pageSize: 50,
-    }
+      pageSize: faker.random.number,
+    };
 
     await api.accounts.list(params);
 
     const mockClient = mockedClient.mock.instances[0];
-    expect(mockClient.get).toHaveBeenCalledWith(`accounts?page[size]=50`);
+    expect(mockClient.get).toHaveBeenCalledWith(
+      `accounts?page[size]=${params.pageSize}`
+    );
   });
 
   it('retrieves an account by id', async () => {
-    const accountId = faker.random.uuid;
+    const accountId = faker.random.uuid();
 
     await api.accounts.retrieve(accountId);
 
