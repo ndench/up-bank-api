@@ -1,7 +1,6 @@
 import { UpClient } from 'helper/client';
-import { ListAccountsRequest, ListCategoriesRequest, ListTransactionRequest, UpApi } from 'index';
+import { UpApi } from 'index';
 import { mocked } from 'ts-jest/utils';
-import faker from 'faker';
 
 jest.mock('helper/client');
 

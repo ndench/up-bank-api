@@ -1,5 +1,5 @@
 import { UpClient } from 'helper/client';
-import { ListAccountsRequest, ListCategoriesRequest, UpApi } from 'index';
+import { ListCategoriesRequest, UpApi } from 'index';
 import { mocked } from 'ts-jest/utils';
 import faker from 'faker';
 

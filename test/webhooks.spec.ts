@@ -1,11 +1,5 @@
 import { UpClient } from 'helper/client';
-import {
-  ListAccountsRequest,
-  ListCategoriesRequest,
-  ListTagsRequest, ListWebhooksRequest,
-  TagInputResourceIdentifier,
-  UpApi,
-} from 'index';
+import { ListWebhooksRequest, UpApi } from 'index';
 import { mocked } from 'ts-jest/utils';
 import faker from 'faker';
 
@@ -48,7 +42,9 @@ describe('the webhooks api', () => {
     await api.webhooks.create(url);
 
     const mockClient = mockedClient.mock.instances[0];
-    expect(mockClient.post).toHaveBeenCalledWith(`webhooks`, {attributes: {url, description: null}});
+    expect(mockClient.post).toHaveBeenCalledWith(`webhooks`, {
+      attributes: { url, description: null },
+    });
   });
 
   it('creates a webhook with a description', async () => {
@@ -58,7 +54,9 @@ describe('the webhooks api', () => {
     await api.webhooks.create(url, description);
 
     const mockClient = mockedClient.mock.instances[0];
-    expect(mockClient.post).toHaveBeenCalledWith(`webhooks`, {attributes: {url, description}});
+    expect(mockClient.post).toHaveBeenCalledWith(`webhooks`, {
+      attributes: { url, description },
+    });
   });
 
   it('retrieves a webhook by id', async () => {

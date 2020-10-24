@@ -1,11 +1,5 @@
 import { UpClient } from 'helper/client';
-import {
-  ListAccountsRequest,
-  ListCategoriesRequest,
-  ListTagsRequest,
-  TagInputResourceIdentifier,
-  UpApi,
-} from 'index';
+import { ListTagsRequest, TagInputResourceIdentifier, UpApi } from 'index';
 import { mocked } from 'ts-jest/utils';
 import faker from 'faker';
 
@@ -59,7 +53,10 @@ describe('the tags api', () => {
     await api.tags.addTagsToTransaction(transactionId, tags);
 
     const mockClient = mockedClient.mock.instances[0];
-    expect(mockClient.post).toHaveBeenCalledWith(`transactions/${transactionId}/relationships/tags`, tags);
+    expect(mockClient.post).toHaveBeenCalledWith(
+      `transactions/${transactionId}/relationships/tags`,
+      tags
+    );
   });
 
   it('removes tags from transaction', async () => {
@@ -79,6 +76,9 @@ describe('the tags api', () => {
     await api.tags.removeTagsFromTransaction(transactionId, tags);
 
     const mockClient = mockedClient.mock.instances[0];
-    expect(mockClient.delete).toHaveBeenCalledWith(`transactions/${transactionId}/relationships/tags`, tags);
+    expect(mockClient.delete).toHaveBeenCalledWith(
+      `transactions/${transactionId}/relationships/tags`,
+      tags
+    );
   });
 });

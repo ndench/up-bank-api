@@ -1,5 +1,5 @@
 import { UpClient } from 'helper/client';
-import { ListAccountsRequest, ListCategoriesRequest, ListTransactionRequest, UpApi } from 'index';
+import { ListTransactionRequest, UpApi } from 'index';
 import { mocked } from 'ts-jest/utils';
 import faker from 'faker';
 
@@ -43,6 +43,8 @@ describe('the transactions api', () => {
     await api.transactions.retrieve(transactionId);
 
     const mockClient = mockedClient.mock.instances[0];
-    expect(mockClient.get).toHaveBeenCalledWith(`transactions/${transactionId}`);
+    expect(mockClient.get).toHaveBeenCalledWith(
+      `transactions/${transactionId}`
+    );
   });
 });
