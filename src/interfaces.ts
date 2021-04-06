@@ -14,11 +14,19 @@ export interface MoneyObject {
   valueInBaseUnits: number;
 }
 
-export interface Relationship {
+export interface RelationshipData<RelationshipType extends string> {
   /** The type of this resource */
-  type: string;
+  type: RelationshipType;
   /** The unique identifier of the resource within its type. */
   id: string;
+}
+
+export interface Relationship<TRelationshipData> {
+  data: TRelationshipData;
+  links?: {
+    /** The link to retrieve the related resource(s) in this relationship. */
+    related: string;
+  };
 }
 
 export interface PaginationLinks {

@@ -1,4 +1,4 @@
-import { Relationship } from '../interfaces';
+import { Relationship, RelationshipData } from '../interfaces';
 
 export interface ListCategoriesRequest {
   /**
@@ -19,20 +19,8 @@ export interface CategoryResource {
     name: string;
   };
   relationships: {
-    parent: {
-      data: null | Relationship;
-      links?: {
-        /** The link to retrieve the related resource(s) in this relationship. */
-        related: string;
-      };
-    };
-    children: {
-      data: Relationship[];
-      links?: {
-        /** The link to retrieve the related resource(s) in this relationship. */
-        related: string;
-      };
-    };
+    parent: Relationship<null | RelationshipData<'categories'>>;
+    children: Relationship<Array<RelationshipData<'categories'>>>;
   };
   links: {
     /** The canonical link to this resource within the API. */

@@ -1,4 +1,4 @@
-import { MoneyObject, PaginationLinks } from '../interfaces';
+import { MoneyObject, PaginationLinks, Relationship } from '../interfaces';
 
 export interface ListAccountsRequest {
   /** The number of records to return in each page. e.g. ?page[size]=30 */
@@ -26,10 +26,7 @@ export interface AccountResource {
     createdAt: string;
   };
   relationships: {
-    links?: {
-      /** The link to retrieve the related resource(s) in this relationship. */
-      related: string;
-    };
+    transactions: Relationship<undefined>;
   };
   links: {
     /** The canonical link to this resource within the API. */

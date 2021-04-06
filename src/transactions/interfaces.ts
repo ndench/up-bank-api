@@ -1,4 +1,9 @@
-import { MoneyObject, PaginationLinks, Relationship } from '../interfaces';
+import {
+  MoneyObject,
+  PaginationLinks,
+  Relationship,
+  RelationshipData,
+} from '../interfaces';
 
 export interface ListTransactionRequest {
   /** The number of records to return in each page. e.g. ?page[size]=30 */
@@ -116,34 +121,11 @@ export interface TransactionResource {
     createdAt: string;
   };
   relationships: {
-    account: {
-      data: Relationship;
-      links?: {
-        /** The link to retrieve the related resource(s) in this relationship. */
-        related: string;
-      };
-    };
-    category: {
-      data: null | Relationship;
-      links?: {
-        /** The link to retrieve the related resource(s) in this relationship. */
-        related: string;
-      };
-    };
-    parentCategory: {
-      data: null | Relationship;
-      links?: {
-        /** The link to retrieve the related resource(s) in this relationship. */
-        related: string;
-      };
-    };
-    tags: {
-      data: Relationship[];
-      links?: {
-        /** The link to retrieve the related resource(s) in this relationship. */
-        related: string;
-      };
-    };
+    account: Relationship<RelationshipData<'accounts'>>;
+    transferAccount: Relationship<null | RelationshipData<'accounts'>>;
+    category: Relationship<null | RelationshipData<'categories'>>;
+    parentCategory: Relationship<null | RelationshipData<'categories'>>;
+    tags: Relationship<Array<RelationshipData<'tags'>>>;
   };
   links: {
     /** The canonical link to this resource within the API. */
