@@ -1,3 +1,5 @@
+import { Relationship, RelationshipData } from '../interfaces';
+
 /**
  * Provides information about a webhook.
  */
@@ -41,14 +43,7 @@ export interface WebhookResource {
     createdAt: string;
   };
   relationships: {
-    logs: {
-      links?: {
-        /**
-         * The link to retrieve the related resource(s) in this relationship.
-         */
-        related: string;
-      };
-    };
+    logs: Relationship<undefined>;
   };
   links?: {
     /**
@@ -157,42 +152,8 @@ export interface WebhookEventResource {
     createdAt: string;
   };
   relationships: {
-    webhook: {
-      data: {
-        /**
-         * The type of this resource: `webhooks`
-         */
-        type: string;
-        /**
-         * The unique identifier of the resource within its type.
-         */
-        id: string;
-      };
-      links?: {
-        /**
-         * The link to retrieve the related resource(s) in this relationship.
-         */
-        related: string;
-      };
-    };
-    transaction?: {
-      data: {
-        /**
-         * The type of this resource: `transactions`
-         */
-        type: string;
-        /**
-         * The unique identifier of the resource within its type.
-         */
-        id: string;
-      };
-      links?: {
-        /**
-         * The link to retrieve the related resource(s) in this relationship.
-         */
-        related: string;
-      };
-    };
+    webhook: Relationship<RelationshipData<'webhooks'>>;
+    transaction?: Relationship<RelationshipData<'transactions'>>;
   };
 }
 
@@ -271,16 +232,7 @@ export interface WebhookDeliveryLogResource {
   };
   relationships: {
     webhookEvent: {
-      data: {
-        /**
-         * The type of this resource: `webhook-events`
-         */
-        type: string;
-        /**
-         * The unique identifier of the resource within its type.
-         */
-        id: string;
-      };
+      data: RelationshipData<'webhook-events'>;
     };
   };
 }

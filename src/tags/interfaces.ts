@@ -1,3 +1,5 @@
+import { Relationship } from '../interfaces';
+
 /**
  * Provides information about a tag.
  */
@@ -11,14 +13,7 @@ export interface TagResource {
    */
   id: string;
   relationships: {
-    transactions: {
-      links?: {
-        /**
-         * The link to retrieve the related resource(s) in this relationship.
-         */
-        related: string;
-      };
-    };
+    transactions: Relationship<undefined>;
   };
 }
 
