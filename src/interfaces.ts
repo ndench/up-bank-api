@@ -29,11 +29,11 @@ export interface Relationship<TRelationshipData> {
   };
 }
 
-export interface PaginationLinks {
+export interface PaginationLinks<ReturnType> {
   /** The link to the previous page in the results. If this value is null there is no previous page. */
-  prev: string | null;
+  prev: () => Promise<ReturnType> | null;
   /** The link to the next page in the results. If this value is null there is no next page. */
-  next: string | null;
+  next: () => Promise<ReturnType> | null;
 }
 
 export interface UpApiError {

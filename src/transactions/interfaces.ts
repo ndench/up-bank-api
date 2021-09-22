@@ -136,5 +136,5 @@ export interface TransactionResource {
 export interface ListTransactionsResponse {
   /** The list of transactions returned in this response. */
   data: TransactionResource[];
-  links: PaginationLinks;
+  links: PaginationLinks<ListTransactionsResponse>;
 }
