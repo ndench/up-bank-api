@@ -45,7 +45,7 @@ export interface ListTagsResponse {
   /**
    * The list of tags returned in this response.
    */
-  data: TagResource;
+  data: TagResource[];
   links: {
     /**
      * The link to the previous page in the results. If this value is `null`
