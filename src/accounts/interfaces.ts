@@ -37,5 +37,5 @@ export interface AccountResource {
 export interface ListAccountResponse {
   /** The list of accounts returned in this response. */
   data: AccountResource[];
-  links: PaginationLinks;
+  links: PaginationLinks<ListAccountResponse>;
 }

@@ -24,6 +24,34 @@ export class UpClient {
 
   public async get<T>(url: string): Promise<T> {
     const res = await this.getApi().get<T>(url);
+
+    const linksProcessor = (res.data as unknown) as {
+      links: {
+        next: null | (() => Promise<T>);
+        prev: null | (() => Promise<T>);
+      };
+    };
+    if (linksProcessor.links) {
+      linksProcessor.links.next = linksProcessor.links.next
+        ? async () => {
+            return (
+              await this.getApi().get<T>(
+                (linksProcessor.links.next as unknown) as string
+              )
+            ).data;
+          }
+        : null;
+      linksProcessor.links.prev = linksProcessor.links.prev
+        ? async () => {
+            return (
+              await this.getApi().get<T>(
+                (linksProcessor.links.prev as unknown) as string
+              )
+            ).data;
+          }
+        : null;
+    }
+
     return res.data;
   }
 

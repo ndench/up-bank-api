@@ -1,4 +1,4 @@
-import { Relationship, RelationshipData } from '../interfaces';
+import { Relationship, RelationshipData, PaginationLinks } from '../interfaces';
 
 /**
  * Provides information about a webhook.
@@ -68,18 +68,7 @@ export interface ListWebhooksResponse {
    * The list of webhooks returned in this response.
    */
   data: WebhookResource[];
-  links: {
-    /**
-     * The link to the previous page in the results. If this value is `null`
-     * there is no previous page.
-     */
-    prev: string | null;
-    /**
-     * The link to the next page in the results. If this value is `null`
-     * there is no next page.
-     */
-    next: string | null;
-  };
+  links: PaginationLinks<ListWebhooksResponse>;
 }
 
 /**
@@ -247,16 +236,5 @@ export interface ListWebhookDeliveryLogsResponse {
    * The list of delivery logs returned in this response.
    */
   data: WebhookDeliveryLogResource[];
-  links: {
-    /**
-     * The link to the previous page in the results. If this value is `null`
-     * there is no previous page.
-     */
-    prev: string | null;
-    /**
-     * The link to the next page in the results. If this value is `null`
-     * there is no next page.
-     */
-    next: string | null;
-  };
+  links: PaginationLinks<ListWebhookDeliveryLogsResponse>;
 }

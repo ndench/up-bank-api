@@ -1,4 +1,4 @@
-import { Relationship } from '../interfaces';
+import { Relationship, PaginationLinks } from '../interfaces';
 
 /**
  * Provides information about a tag.
@@ -46,18 +46,7 @@ export interface ListTagsResponse {
    * The list of tags returned in this response.
    */
   data: TagResource[];
-  links: {
-    /**
-     * The link to the previous page in the results. If this value is `null`
-     * there is no previous page.
-     */
-    prev: string | null;
-    /**
-     * The link to the next page in the results. If this value is `null`
-     * there is no next page.
-     */
-    next: string | null;
-  };
+  links: PaginationLinks<ListTagsResponse>;
 }
 
 /**
