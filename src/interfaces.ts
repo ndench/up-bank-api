@@ -31,9 +31,9 @@ export interface Relationship<TRelationshipData> {
 
 export interface PaginationLinks<ReturnType> {
   /** The link to the previous page in the results. If this value is null there is no previous page. */
-  prev: () => Promise<ReturnType> | null;
+  prev: null | (() => Promise<ReturnType>);
   /** The link to the next page in the results. If this value is null there is no next page. */
-  next: () => Promise<ReturnType> | null;
+  next: null | (() => Promise<ReturnType>);
 }
 
 export interface UpApiError {
