@@ -1,6 +1,14 @@
 import axios, { AxiosInstance } from 'axios';
 import { BASE_URL } from '../constants';
 
+interface UpBaseResponse {
+  data?: unknown;
+  links?: {
+    next: null | string;
+    prev: null | string;
+  };
+}
+
 export class UpClient {
   private api: AxiosInstance | null = null;
 
@@ -22,34 +30,36 @@ export class UpClient {
     });
   }
 
-  public async get<T>(url: string): Promise<T> {
+  processLink<T>(link: string): null | (() => Promise<T>) {
+    if (link) {
+      const linkFunc: () => Promise<T> = async () => {
+        const parsedLink = link.slice(BASE_URL.length);
+        return await this.get<T>(parsedLink);
+      };
+      linkFunc.bind(this);
+      return linkFunc;
+    }
+    return null;
+  }
+
+  public async get<T extends UpBaseResponse>(url: string): Promise<T> {
     const res = await this.getApi().get<T>(url);
 
-    const linksProcessor = (res.data as unknown) as {
-      links: {
-        next: null | (() => Promise<T>);
-        prev: null | (() => Promise<T>);
+    const links = res.data?.links;
+    /*
+     * If links exist, process the strings into functions that
+     * re-execute 'this.get()' with the new url
+     */
+    if (links) {
+      const linksProcessObj = (res.data as unknown) as {
+        links: {
+          next: null | (() => Promise<T>);
+          prev: null | (() => Promise<T>);
+        };
       };
-    };
-    if (linksProcessor.links) {
-      linksProcessor.links.next = linksProcessor.links.next
-        ? async () => {
-            return (
-              await this.getApi().get<T>(
-                (linksProcessor.links.next as unknown) as string
-              )
-            ).data;
-          }
-        : null;
-      linksProcessor.links.prev = linksProcessor.links.prev
-        ? async () => {
-            return (
-              await this.getApi().get<T>(
-                (linksProcessor.links.prev as unknown) as string
-              )
-            ).data;
-          }
-        : null;
+
+      linksProcessObj.links.next = this.processLink<T>(links.next);
+      linksProcessObj.links.prev = this.processLink<T>(links.prev);
     }
 
     return res.data;
