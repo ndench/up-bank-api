@@ -1,14 +1,6 @@
 import axios, { AxiosInstance } from 'axios';
 import { BASE_URL } from '../constants';
 
-interface UpBaseResponse {
-  data?: unknown;
-  links?: {
-    next: null | string;
-    prev: null | string;
-  };
-}
-
 export class UpClient {
   private api: AxiosInstance | null = null;
 
@@ -42,24 +34,26 @@ export class UpClient {
     return null;
   }
 
-  public async get<T extends UpBaseResponse>(url: string): Promise<T> {
+  public async get<T>(url: string): Promise<T> {
     const res = await this.getApi().get<T>(url);
 
-    const links = res.data?.links;
+    const linksProcessObj = (res.data as unknown) as {
+      links?: {
+        next: null | string | (() => Promise<T>);
+        prev: null | string | (() => Promise<T>);
+      };
+    };
     /*
      * If links exist, process the strings into functions that
      * re-execute 'this.get()' with the new url
      */
-    if (links) {
-      const linksProcessObj = (res.data as unknown) as {
-        links: {
-          next: null | (() => Promise<T>);
-          prev: null | (() => Promise<T>);
-        };
-      };
-
-      linksProcessObj.links.next = this.processLink<T>(links.next);
-      linksProcessObj.links.prev = this.processLink<T>(links.prev);
+    if (linksProcessObj.links) {
+      linksProcessObj.links.next = this.processLink<T>(
+        linksProcessObj.links.next as string
+      );
+      linksProcessObj.links.prev = this.processLink<T>(
+        linksProcessObj.links.prev as string
+      );
     }
 
     return res.data;
