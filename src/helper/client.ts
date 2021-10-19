@@ -22,34 +22,38 @@ export class UpClient {
     });
   }
 
+  processLink<T>(link: string): null | (() => Promise<T>) {
+    if (link) {
+      const linkFunc: () => Promise<T> = async () => {
+        const parsedLink = link.slice(BASE_URL.length);
+        return await this.get<T>(parsedLink);
+      };
+      linkFunc.bind(this);
+      return linkFunc;
+    }
+    return null;
+  }
+
   public async get<T>(url: string): Promise<T> {
     const res = await this.getApi().get<T>(url);
 
-    const linksProcessor = (res.data as unknown) as {
-      links: {
-        next: null | (() => Promise<T>);
-        prev: null | (() => Promise<T>);
+    const linksProcessObj = (res.data as unknown) as {
+      links?: {
+        next: null | string | (() => Promise<T>);
+        prev: null | string | (() => Promise<T>);
       };
     };
-    if (linksProcessor.links) {
-      linksProcessor.links.next = linksProcessor.links.next
-        ? async () => {
-            return (
-              await this.getApi().get<T>(
-                (linksProcessor.links.next as unknown) as string
-              )
-            ).data;
-          }
-        : null;
-      linksProcessor.links.prev = linksProcessor.links.prev
-        ? async () => {
-            return (
-              await this.getApi().get<T>(
-                (linksProcessor.links.prev as unknown) as string
-              )
-            ).data;
-          }
-        : null;
+    /*
+     * If links exist, process the strings into functions that
+     * re-execute 'this.get()' with the new url
+     */
+    if (linksProcessObj.links) {
+      linksProcessObj.links.next = this.processLink<T>(
+        linksProcessObj.links.next as string
+      );
+      linksProcessObj.links.prev = this.processLink<T>(
+        linksProcessObj.links.prev as string
+      );
     }
 
     return res.data;
