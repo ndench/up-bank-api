@@ -67,6 +67,22 @@ The following modules of the Up API are fully supported:
 - [Tags](https://developer.up.com.au/#tags)
 - [Webhooks](https://developer.up.com.au/#webhooks)
 
+## Development
+
+To aid development, we have a CLI script which can access the Up Bank API directly. Copy `.env.dist` to `.env` and 
+insert your API key. Then you can call each endpoint and see exactly what data in returned:
+
+```shell
+# Print all accounts
+yarn run up accounts list
+
+# Print only the first 2 accounts
+yarn run up accounts list --pageSize=2
+
+# Print the first 5 transactions in a specific account
+yarn run up transactions listByAccount <uuid> --pageSize=5
+```
+
 ## Publishing
 
 To publish a new version we use the `yarn release` command, which is configured to run the `np` command
