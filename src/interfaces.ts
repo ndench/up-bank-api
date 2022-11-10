@@ -25,7 +25,7 @@ export interface Relationship<TRelationshipData> {
   data: TRelationshipData;
   links?: {
     /** The link to retrieve the related resource(s) in this relationship. */
-    related: string;
+    related?: string;
   };
 }
 
